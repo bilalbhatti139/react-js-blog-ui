@@ -94,7 +94,11 @@ const BlogForm = ({ createBlog }) => {
             sx={{ marginBottom: '10px' }}
           />
         </Box>
-        <Button variant='contained' type='submit'>
+        <Button
+          variant='contained'
+          type='submit'
+          sx={{ textTransform: 'capitalize' }}
+        >
           Add
         </Button>
         <Button
@@ -102,7 +106,7 @@ const BlogForm = ({ createBlog }) => {
           onClick={() => {
             closeBlogModal()
           }}
-          sx={{ marginLeft: '10px' }}
+          sx={{ marginLeft: '10px', textTransform: 'capitalize' }}
         >
           Close
         </Button>

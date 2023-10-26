@@ -24,11 +24,7 @@ const App = () => {
 
       <Notification />
 
-      {/* {loggedInUser === null && (
-        <Togglable buttonLabel='log in'>
-          <LoginForm />
-        </Togglable>
-      )} */}
+    
       {openLoginModal && <LoginModal />}
 
       {loggedInUser !== null && openNewBlogModal && (

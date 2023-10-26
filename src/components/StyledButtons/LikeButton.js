@@ -30,7 +30,9 @@ const LikeButton = ({ incrementLikes, isUserAllowedToLike, like }) => {
         disabled={!isUserAllowedToLike}
         startIcon={<FavoriteIcon style={iconStyle} />}
       >
-        <span style={likesTextStyle}>{like} Likes</span>
+        <span style={{ textTransform: 'capitalize', ...likesTextStyle }}>
+          {like} Likes
+        </span>
       </Button>
     </>
   )

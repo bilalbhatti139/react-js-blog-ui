@@ -7,6 +7,8 @@ import Error from '../FetchStateUI/Error'
 import { Typography, Container, Grid, Paper, Avatar } from '@mui/material'
 import line from '../../assets/images/Line.png'
 import img from '../../assets/images/post2.png'
+import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace'
+import CallMadeIcon from '@mui/icons-material/CallMade'
 
 const User = () => {
   const { id } = useParams()
@@ -71,6 +73,8 @@ const User = () => {
                     since
                   </Typography>
                   <Typography
+                    component={Link}
+                    to='/users'
                     variant='body2'
                     color='#4478F9'
                     sx={{
@@ -85,7 +89,10 @@ const User = () => {
                       },
                     }}
                   >
-                    <Link to='/users'>Back To Users</Link>
+                    <div style={{ display: 'flex', gap: '5px' }}>
+                      <KeyboardBackspaceIcon />{' '}
+                      <p style={{ margin: '0px' }}>Back To Users</p>
+                    </div>
                   </Typography>
                 </div>
               </div>
@@ -145,11 +152,12 @@ const User = () => {
                   cross-media information without cross-media value. Quickly
                   maximize. Efficiently unleash cross-media.
                 </Typography>
+
                 <Typography
                   variant='body2'
-                  color='blue'
+                  color='#2B63D9'
                   sx={{
-                    marginBottom: '20px',
+                    marginBottom: '5px',
                     fontWeight: '500',
                     '& a': {
                       textDecoration: 'none',
@@ -162,6 +170,7 @@ const User = () => {
                   }}
                 >
                   <Link to={`/blogs/${blog.id}`}>Read More</Link>
+                  <CallMadeIcon sx={{ fontSize: '16px' }} />
                 </Typography>
               </Grid>
             ))}

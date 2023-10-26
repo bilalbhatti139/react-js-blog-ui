@@ -3,10 +3,10 @@ import { Button } from '@mui/material'
 const DeleteButton = ({ handleDeleteClick }) => (
   <Button
     variant='contained'
-    sx={{ color: '#fff' }}
+    sx={{ color: '#fff', textTransform: 'capitalize' }}
     onClick={handleDeleteClick}
   >
-    delete
+    Delete
   </Button>
 )
 

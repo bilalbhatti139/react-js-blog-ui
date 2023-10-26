@@ -9,7 +9,7 @@ import SendIcon from '@mui/icons-material/Send'
 const CommentForm = ({
   blogId,
   createComment,
-  toggleVisibility,
+
   setShowComment,
 }) => {
   const {
@@ -28,7 +28,6 @@ const CommentForm = ({
       await createComment(blogId, commentObject)
       showNotification('Success! A new comment has been added.', 'success')
       resetComment()
-      toggleVisibility()
     } catch (error) {
       console.log(error)
       showNotification(error.response?.data?.error, 'error')
@@ -54,9 +53,14 @@ const CommentForm = ({
           <Button
             variant='contained'
             type='submit'
-            sx={{ paddingLeft: '40px', paddingRight: '40px', fontSize: '18px' }}
+            style={{
+              paddingLeft: '40px',
+              paddingRight: '40px',
+              fontSize: '18px',
+              textTransform: 'capitalize',
+            }}
           >
-            SUBMIT
+            Submit
             <SendIcon
               sx={{
                 rotate: '306deg',
@@ -69,7 +73,11 @@ const CommentForm = ({
           </Button>
           <Button
             variant='outlined'
-            style={{ marginLeft: '10px', fontSize: '18px' }}
+            style={{
+              marginLeft: '10px',
+              fontSize: '18px',
+              textTransform: 'capitalize',
+            }}
             onClick={() => {
               setShowComment(false)
             }}

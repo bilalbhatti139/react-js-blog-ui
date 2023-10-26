@@ -20,48 +20,6 @@ const BlogList = () => {
 
   return (
     <div>
-      {/* <section id='blog-list-container'>
-        {blogs
-          .sort((a, b) => b.likes - a.likes)
-          .map((blog) => (
-            <Card
-              key={blog.id}
-              sx={blogCardStyles}
-              className='single-blog-container'
-            >
-              <CardContent>
-                <Typography variant='h6'>
-                  <Link to={`/blogs/${blog.id}`}>
-                    {blog.author
-                      ? `${blog.title} by ${blog.author}`
-                      : blog.title}
-                  </Link>
-                </Typography>
-              </CardContent>
-            </Card>
-          ))}
-      </section>
-      <div>my design</div> */}
-      {/* <Box
-        sx={{
-          padding: '80px 30px 92px 30px',
-          justifyContent: 'center',
-          alignItems: 'center',
-          width: '100%', // Full width
-          margin: '0 auto', // Center the content
-        }}
-      >
-        <Grid container>
-          <Grid item xs={12} md={6}>
-            <div>
-              <Typography variant='subtitle1'>1% OF THE INDUSTRY</Typography>
-              <Typography variant='h1'>
-                Hype got you here. Stay for the support.
-              </Typography>
-            </div>
-          </Grid>
-        </Grid>
-      </Box> */}
       <Container maxWidth='xl' sx={{ backgroundColor: '#f8f9fb' }}>
         <Grid
           container
@@ -122,10 +80,24 @@ const BlogList = () => {
                   <div style={{ padding: '16px' }}>
                     <img src={img} alt='post' style={{ width: '100%' }} />
                     <div>
-                      <Typography variant='body2' color='text.secondary'>
+                      <Typography
+                        sx={{
+                          color: '#696969',
+                          fontWeight: '500',
+                          fontSize: '12px',
+                          marginBottom: '0px',
+                        }}
+                      >
                         25 Apr 2022
                       </Typography>
-                      <Typography variant='h5' component='div'>
+                      <Typography
+                        sx={{
+                          color: '#000',
+                          fontWeight: '700',
+                          fontSize: '12px',
+                          marginTop: '0px',
+                        }}
+                      >
                         {blog?.title}
                       </Typography>
 
@@ -135,15 +107,21 @@ const BlogList = () => {
                         justifyContent='space-between'
                         alignItems='center'
                       >
-                        <Grid item>
-                          <Typography variant='body2' color='text.secondary'>
+                        <Grid>
+                          <Typography
+                            sx={{
+                              marginLeft: '16px',
+                              fontWeight: '500',
+                              fontSize: '14px',
+                            }}
+                          >
                             {blog?.author && `by ${blog.author}`}
                           </Typography>
                         </Grid>
 
-                        <Grid item>
-                          <Typography variant='body2' color='text.secondary'>
-                            <Link to={`/blogs/${blog.id}`}>Learn More</Link>
+                        <Grid>
+                          <Typography component={Link} to={`/blogs/${blog.id}`}>
+                            Learn More
                           </Typography>
                         </Grid>
                       </Grid>

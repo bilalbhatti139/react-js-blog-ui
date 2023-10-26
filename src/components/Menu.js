@@ -4,11 +4,11 @@ import useAuthentication from '../hooks/useAuthentication'
 import { UserContext } from '../contexts/UserContext'
 import { NotificationContext } from '../contexts/NotificationContext'
 import { AppBar, Toolbar, Button, Box } from '@mui/material'
-
 import { useLoginModal } from '../contexts/LoginModalContext'
+import logo from '../assets/images/logo.png'
+import PeopleIcon from '@mui/icons-material/People'
 
 const Menu = () => {
-  // const [loginModal, setLogInModal] = useState()
   const { handleLogout } = useAuthentication()
   const [loggedInUser] = useContext(UserContext)
   const [, showNotification] = useContext(NotificationContext)
@@ -35,9 +35,6 @@ const Menu = () => {
     alignItems: 'center',
   }
 
-  // const theme = useTheme()
-  // const isScreenSmall = useMediaQuery(theme.breakpoints.down('sm'))
-
   const handleLogoutClick = () => {
     try {
       handleLogout()
@@ -51,7 +48,13 @@ const Menu = () => {
   }
 
   return (
-    <AppBar position='static' sx={{ backgroundColor: '#F8F9FB' }}>
+    <AppBar
+      position='static'
+      sx={{
+        backgroundColor: '#F8F9FB',
+        boxShadow: 'none',
+      }}
+    >
       <Toolbar sx={toolbarStyles}>
         <Box sx={leftBoxStyles}>
           <Button
@@ -59,7 +62,7 @@ const Menu = () => {
             sx={{ color: '#000', fontWeight: '600' }}
             to='/'
           >
-            Home
+            <img src={logo} />
           </Button>
         </Box>
 
@@ -71,6 +74,7 @@ const Menu = () => {
                   variant='contained'
                   sx={{
                     marginRight: '15px',
+                    textTransform: 'capitalize',
                     backgroundColor: '#427ef8',
                     fontWeight: '600',
                     '&:hover': {
@@ -89,6 +93,7 @@ const Menu = () => {
                   sx={{
                     marginRight: '15px',
                     backgroundColor: '#427ef8',
+                    textTransform: 'capitalize',
                     fontWeight: '600',
                     '&:hover': {
                       backgroundColor: '#427ef8', // Keep the same color on hover
@@ -98,6 +103,7 @@ const Menu = () => {
                   component={Link}
                   to='/users'
                 >
+                  <PeopleIcon sx={{ marginRight: '10px' }} />
                   Users
                 </Button>
               </>
@@ -106,6 +112,7 @@ const Menu = () => {
               variant='contained'
               sx={{
                 backgroundColor: '#427ef8',
+                textTransform: 'capitalize',
                 fontWeight: '600',
                 '&:hover': {
                   backgroundColor: '#427ef8', // Keep the same color on hover
@@ -123,12 +130,13 @@ const Menu = () => {
               variant='contained'
               sx={{
                 backgroundColor: '#427ef8',
+                textTransform: 'capitalize',
                 fontWeight: '600',
                 '&:hover': {
                   backgroundColor: '#427ef8', // Keep the same color on hover
                 },
               }}
-              size='medium'
+              size='large'
               onClick={openModal}
             >
               Log In

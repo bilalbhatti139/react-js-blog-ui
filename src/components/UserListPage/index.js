@@ -7,6 +7,7 @@ import Error from '../FetchStateUI/Error'
 import { Typography, Container, Grid, Card } from '@mui/material'
 import img from '../../assets/images/post1.png'
 import line from '../../assets/images/Line.png'
+import CallMadeIcon from '@mui/icons-material/CallMade'
 
 const UserList = () => {
   const [loggedInUser] = useContext(UserContext)
@@ -89,20 +90,28 @@ const UserList = () => {
                   <div style={{ textAlign: 'center' }}>
                     <Typography
                       variant='h6'
-                      sx={{ marginTop: '10px', fontWeight: '600' }}
+                      sx={{
+                        marginTop: '10px',
+                        fontWeight: '500',
+                        fontSize: '18px',
+                      }}
                     >
                       {user.name}
                     </Typography>
                     <Typography
                       component='div'
-                      sx={{ marginTop: '5px', fontWeight: '500' }}
+                      sx={{
+                        marginTop: '5px',
+                        fontWeight: '500',
+                        fontSize: '12px',
+                      }}
                     >
                       Lorem Ipsum has been the industrys standard dummy text
                       ever since the 15
                     </Typography>
                     <Typography
                       variant='body2'
-                      color='blue'
+                      color='#2B63D9'
                       sx={{
                         marginBottom: '5px',
                         fontWeight: '500',
@@ -117,8 +126,11 @@ const UserList = () => {
                       }}
                     >
                       <Link to={`/users/${user.id}`}>
-                        Click Here To See Blog
+                        Click Here To See Blogs
                       </Link>
+                      <CallMadeIcon
+                        sx={{ position: 'absolute', fontSize: '16px' }}
+                      />
                     </Typography>
                   </div>
                 </Card>

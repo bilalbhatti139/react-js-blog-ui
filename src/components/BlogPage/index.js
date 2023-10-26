@@ -81,7 +81,7 @@ const Blog = () => {
     <>
       <Container>
         <section id='blog-list-container'>
-          <Grid container spacing={4} sx={{ marginTop: '40px' }}>
+          <Grid container spacing={4} sx={{ marginTop: '20px' }}>
             <Grid item xs={12} sm={12} md={12}>
               <img src={img} style={{ width: '100%' }} />
 
@@ -103,7 +103,7 @@ const Blog = () => {
           {loggedInUser && (
             <Button
               variant='contained'
-              style={commentButtonStyle}
+              style={{ textTransform: 'capitalize', ...commentButtonStyle }}
               onClick={() => {
                 setShowComment(true)
               }}
