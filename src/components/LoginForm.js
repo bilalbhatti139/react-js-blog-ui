@@ -3,18 +3,14 @@ import loginService from '../services/login'
 import useAuthentication from '../hooks/useAuthentication'
 import useField from '../hooks/useField'
 import { NotificationContext } from '../contexts/NotificationContext'
-import {
-  Typography,
-  Button,
-  Box,
-  Stack,
-  FormGroup,
-  FormControlLabel,
-} from '@mui/material'
+import { Typography, Button, Box, Stack } from '@mui/material'
 import CustomFormLabel from './Login/CustomFormLabel'
 import CustomTextField from './Login/CustomTextField'
-import CustomCheckbox from './Login/CustomCheckbox'
+
+import Checkbox from '@mui/material/Checkbox'
 import { useLoginModal } from '../contexts/LoginModalContext'
+
+const label = { inputProps: { 'aria-label': 'Checkbox demo' } }
 
 const LoginForm = () => {
   const { handleLogin } = useAuthentication()
@@ -108,12 +104,22 @@ const LoginForm = () => {
           alignItems='center'
           my={2}
         >
-          <FormGroup>
-            <FormControlLabel
-              control={<CustomCheckbox defaultChecked />}
-              label='Remeber this Device'
-            />
-          </FormGroup>
+          <Stack
+            justifyContent='space-between'
+            direction='row'
+            alignItems='center'
+            my={2}
+          >
+            <Checkbox {...label} defaultChecked />
+            <Typography sx={{ fontSize: '12px' }}>
+              <span style={{ color: 'black' }}>I Agree To The </span>
+              <span style={{ color: '#427ef8' }}>Terms & Condition</span>
+            </Typography>
+          </Stack>
+
+          <Typography sx={{ color: '#427ef8', fontSize: '12px' }}>
+            Forgot Password?
+          </Typography>
         </Stack>
       </Stack>
       <Box>
@@ -129,13 +135,13 @@ const LoginForm = () => {
         </Button>
       </Box>
       <Typography
-        fontWeight='700'
-        variant='h2'
+        fontWeight='500'
         mb={1}
         align='center'
         color='black'
+        fontSize='18px'
       >
-        Already a member login?
+        Already a member? <span style={{ color: '#427ef8' }}>Login</span>
       </Typography>
     </>
   )

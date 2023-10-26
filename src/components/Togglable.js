@@ -12,18 +12,22 @@ const Togglable = ({ buttonLabel, children }) => {
     setVisible(!visible)
   }
 
-  const childrenWithVisibilityToggle = Children.map(children, child => {
+  const childrenWithVisibilityToggle = Children.map(children, (child) => {
     return cloneElement(child, { toggleVisibility })
   })
 
   return (
     <div>
       <div style={hideWhenVisible}>
-        <Button variant="contained" onClick={toggleVisibility}>{buttonLabel}</Button>
+        <Button variant='contained' onClick={toggleVisibility}>
+          {buttonLabel}
+        </Button>
       </div>
       <div style={showWhenVisible}>
         {childrenWithVisibilityToggle}
-        <Button variant="outlined" onClick={toggleVisibility}>cancel</Button>
+        <Button variant='outlined' onClick={toggleVisibility}>
+          cancel
+        </Button>
       </div>
     </div>
   )

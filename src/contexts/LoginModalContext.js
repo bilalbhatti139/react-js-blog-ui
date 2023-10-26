@@ -8,9 +8,16 @@ export function useLoginModal() {
 
 export function LoginModalProvider({ children }) {
   const [openLoginModal, setOpenLoginModal] = useState(false)
-
+  const [openNewBlogModal, setOpenNewBlogModal] = useState(false)
   const value = {
     openLoginModal,
+    openNewBlogModal,
+    closeBlogModal: () => {
+      setOpenNewBlogModal(false)
+    },
+    openBlogModal: () => {
+      setOpenNewBlogModal(true)
+    },
     closeModal: () => {
       setOpenLoginModal(false)
     },

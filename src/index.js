@@ -9,6 +9,7 @@ import { UserContextProvider } from './contexts/UserContext'
 import { ThemeProvider } from '@mui/material/styles'
 import { theme } from './styles/MUITheme'
 import { LoginModalProvider } from './contexts/LoginModalContext'
+import 'typeface-inter'
 
 const queryClient = new QueryClient()
 

@@ -1,17 +1,14 @@
-import { useContext } from 'react'
 import { Link } from 'react-router-dom'
-import { UserContext } from '../../contexts/UserContext'
+
 import useBlogs from '../../hooks/useBlogs'
 import Loading from '../FetchStateUI/Loading'
 import Error from '../FetchStateUI/Error'
-import BlogForm from './BlogForm'
-import Togglable from '../Togglable'
+
 import { Container, Grid, Typography } from '@mui/material'
 import img from '../../assets/images/post1.png'
 
 const BlogList = () => {
-  const { blogs, isLoadingBlogs, isBlogsError, createBlog } = useBlogs()
-  const [loggedInUser] = useContext(UserContext)
+  const { blogs, isLoadingBlogs, isBlogsError } = useBlogs()
 
   if (isLoadingBlogs) {
     return <Loading />
@@ -23,14 +20,6 @@ const BlogList = () => {
 
   return (
     <div>
-      {loggedInUser !== null && (
-        <div>
-          <Togglable buttonLabel='new blog'>
-            <BlogForm createBlog={createBlog} />
-          </Togglable>
-        </div>
-      )}
-
       {/* <section id='blog-list-container'>
         {blogs
           .sort((a, b) => b.likes - a.likes)

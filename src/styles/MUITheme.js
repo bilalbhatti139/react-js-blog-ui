@@ -4,7 +4,7 @@ const themeOptions = {
   palette: {
     mode: 'light',
     primary: {
-      main: '#A217C6',
+      main: '#427ef8',
     },
     secondary: {
       main: '#3C6CFF',
@@ -58,6 +58,9 @@ const themeOptions = {
         },
       },
     },
+  },
+  typography: {
+    fontFamily: 'Inter', // Use 'Inter' as the preferred font
   },
 }
 

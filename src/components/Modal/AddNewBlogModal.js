@@ -2,7 +2,7 @@ import { useState } from 'react'
 import Box from '@mui/material/Box'
 
 import Modal from '@mui/material/Modal'
-import LoginForm from '../LoginForm'
+
 import { useLoginModal } from '../../contexts/LoginModalContext'
 
 const style = {
@@ -17,12 +17,12 @@ const style = {
   borderRadius: 4,
 }
 
-export default function LoginModal() {
+export default function AddNewBlogModal({ children }) {
   const [open, setOpen] = useState(true)
-  const { closeModal } = useLoginModal()
+  const { closeBlogModal } = useLoginModal()
   const handleClose = () => {
     setOpen(false)
-    closeModal()
+    closeBlogModal()
   }
 
   return (
@@ -33,9 +33,7 @@ export default function LoginModal() {
         aria-labelledby='modal-modal-title'
         aria-describedby='modal-modal-description'
       >
-        <Box sx={style}>
-          <LoginForm />
-        </Box>
+        <Box sx={style}>{children}</Box>
       </Modal>
     </div>
   )

@@ -58,7 +58,7 @@ const User = () => {
           <Grid container spacing={2} sx={{ height: '250px' }}>
             <Grid item xs={6} sx={{ display: 'flex', alignItems: 'center' }}>
               <div style={{ textAlign: 'left', display: 'flex', gap: '15px' }}>
-                <Avatar src={img} alt='post' sx={{ width: 100, height: 100 }} />
+                <Avatar src={img} alt='post' sx={{ width: 120, height: 120 }} />
                 <div>
                   <Typography
                     variant='h6'
@@ -66,9 +66,9 @@ const User = () => {
                   >
                     {user?.name}
                   </Typography>
-                  <Typography variant='body1' sx={{ mt: 1 }}>
+                  <Typography variant='body1' sx={{ margin: '0px' }}>
                     Lorem Ipsum has been the industrys standard dummy text ever
-                    since the 15
+                    since
                   </Typography>
                   <Typography
                     variant='body2'
@@ -85,7 +85,7 @@ const User = () => {
                       },
                     }}
                   >
-                    <Link to={`/users/${user.id}`}>Back To Users</Link>
+                    <Link to='/users'>Back To Users</Link>
                   </Typography>
                 </div>
               </div>

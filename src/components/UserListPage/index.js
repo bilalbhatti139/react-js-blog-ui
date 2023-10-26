@@ -26,30 +26,6 @@ const UserList = () => {
 
   return (
     <div>
-      {/* <Typography variant='h2'>Users</Typography> */}
-      {/* <TableContainer>
-        <Table>
-          <TableHead>
-            <TableRow>
-              <TableCell>Name</TableCell>
-              <TableCell>Blogs added</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {users
-              .sort((a, b) => b.blogs.length - a.blogs.length)
-              .map((user) => (
-                <TableRow key={user.id}>
-                  <TableCell>
-                    <Link to={`/users/${user.id}`}>{user.name}</Link>
-                  </TableCell>
-                  <TableCell>{user.blogs.length}</TableCell>
-                </TableRow>
-              ))}
-          </TableBody>
-        </Table>
-      </TableContainer> */}
-
       <Container
         maxWidth='xl'
         style={{
@@ -63,7 +39,7 @@ const UserList = () => {
           container
           justifyContent='center'
           alignItems='center'
-          sx={{ height: '250px' }}  
+          sx={{ height: '250px' }}
         >
           <Grid item xs={12} md={6}>
             <div style={{ textAlign: 'center' }}>
@@ -107,19 +83,19 @@ const UserList = () => {
                       width: '120px',
                       height: '120px',
                       borderRadius: '50%',
-                      marginTop: '30px',
+                      marginTop: '15px',
                     }}
                   />
                   <div style={{ textAlign: 'center' }}>
                     <Typography
                       variant='h6'
-                      sx={{ marginTop: '20px', fontWeight: '600' }}
+                      sx={{ marginTop: '10px', fontWeight: '600' }}
                     >
                       {user.name}
                     </Typography>
                     <Typography
                       component='div'
-                      sx={{ marginTop: '20px', fontWeight: '500' }}
+                      sx={{ marginTop: '5px', fontWeight: '500' }}
                     >
                       Lorem Ipsum has been the industrys standard dummy text
                       ever since the 15
@@ -128,7 +104,7 @@ const UserList = () => {
                       variant='body2'
                       color='blue'
                       sx={{
-                        marginBottom: '20px',
+                        marginBottom: '5px',
                         fontWeight: '500',
                         '& a': {
                           textDecoration: 'none',

@@ -3,9 +3,8 @@ import { useContext } from 'react'
 import useAuthentication from '../hooks/useAuthentication'
 import { UserContext } from '../contexts/UserContext'
 import { NotificationContext } from '../contexts/NotificationContext'
-import { AppBar, Toolbar, Typography, Button, Box } from '@mui/material'
-import { useTheme } from '@mui/material/styles'
-import useMediaQuery from '@mui/material/useMediaQuery'
+import { AppBar, Toolbar, Button, Box } from '@mui/material'
+
 import { useLoginModal } from '../contexts/LoginModalContext'
 
 const Menu = () => {
@@ -13,7 +12,7 @@ const Menu = () => {
   const { handleLogout } = useAuthentication()
   const [loggedInUser] = useContext(UserContext)
   const [, showNotification] = useContext(NotificationContext)
-  const { openModal } = useLoginModal()
+  const { openModal, openBlogModal } = useLoginModal()
 
   const toolbarStyles = {
     display: 'grid',
@@ -36,10 +35,8 @@ const Menu = () => {
     alignItems: 'center',
   }
 
-  const typographyStyles = { fontSize: 14 }
-
-  const theme = useTheme()
-  const isScreenSmall = useMediaQuery(theme.breakpoints.down('sm'))
+  // const theme = useTheme()
+  // const isScreenSmall = useMediaQuery(theme.breakpoints.down('sm'))
 
   const handleLogoutClick = () => {
     try {
@@ -54,35 +51,87 @@ const Menu = () => {
   }
 
   return (
-    <AppBar position='static'>
+    <AppBar position='static' sx={{ backgroundColor: '#F8F9FB' }}>
       <Toolbar sx={toolbarStyles}>
         <Box sx={leftBoxStyles}>
-          <Button color='inherit' component={Link} to='/'>
+          <Button
+            component={Link}
+            sx={{ color: '#000', fontWeight: '600' }}
+            to='/'
+          >
             Home
           </Button>
-
-          {loggedInUser !== null && (
-            <Button color='inherit' component={Link} to='/users'>
-              Users
-            </Button>
-          )}
         </Box>
 
         {loggedInUser ? (
           <Box sx={rightBoxStyles}>
-            {!isScreenSmall && (
-              <Typography color='inherit' sx={typographyStyles}>
-                Logged in as {loggedInUser.name}
-              </Typography>
+            {loggedInUser !== null && (
+              <>
+                <Button
+                  variant='contained'
+                  sx={{
+                    marginRight: '15px',
+                    backgroundColor: '#427ef8',
+                    fontWeight: '600',
+                    '&:hover': {
+                      backgroundColor: '#427ef8', // Keep the same color on hover
+                    },
+                  }}
+                  size='medium'
+                  onClick={() => {
+                    openBlogModal()
+                  }}
+                >
+                  Add New Blog
+                </Button>
+                <Button
+                  variant='contained'
+                  sx={{
+                    marginRight: '15px',
+                    backgroundColor: '#427ef8',
+                    fontWeight: '600',
+                    '&:hover': {
+                      backgroundColor: '#427ef8', // Keep the same color on hover
+                    },
+                  }}
+                  size='medium'
+                  component={Link}
+                  to='/users'
+                >
+                  Users
+                </Button>
+              </>
             )}
-            <Button color='inherit' onClick={handleLogoutClick}>
-              log out
+            <Button
+              variant='contained'
+              sx={{
+                backgroundColor: '#427ef8',
+                fontWeight: '600',
+                '&:hover': {
+                  backgroundColor: '#427ef8', // Keep the same color on hover
+                },
+              }}
+              size='medium'
+              onClick={handleLogoutClick}
+            >
+              Log Out
             </Button>
           </Box>
         ) : (
           <Box sx={rightBoxStyles}>
-            <Button color='inherit' onClick={openModal}>
-              log in
+            <Button
+              variant='contained'
+              sx={{
+                backgroundColor: '#427ef8',
+                fontWeight: '600',
+                '&:hover': {
+                  backgroundColor: '#427ef8', // Keep the same color on hover
+                },
+              }}
+              size='medium'
+              onClick={openModal}
+            >
+              Log In
             </Button>
           </Box>
         )}
