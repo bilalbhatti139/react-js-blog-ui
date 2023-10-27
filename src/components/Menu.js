@@ -14,8 +14,9 @@ const Menu = () => {
   const [loggedInUser] = useContext(UserContext)
   const [, showNotification] = useContext(NotificationContext)
   const { openModal, openBlogModal } = useLoginModal()
-  const [isDrawerOpen, setIsDrawerOpen] = useState(true);
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+
 
   const toggleDrawer = () => {
     setIsDrawerOpen(!isDrawerOpen);
@@ -100,15 +101,15 @@ const Menu = () => {
           <Button
             variant='contained'
             sx={{
-             
+
               textTransform: 'capitalize',
               fontWeight: '600',
-             
+
             }}
             size='large'
             onClick={toggleDrawer}
           >
-            <MenuIcon/>
+            <MenuIcon />
           </Button>
         </Box>)}
         {loggedInUser && !isMobile ? (
@@ -193,40 +194,94 @@ const Menu = () => {
         anchor='right'
         open={isDrawerOpen}
         onClose={toggleDrawer}
-       
+
       >
-        <Box sx={{ width: 200, p: 2 , display:"flex", flexDirection:"column",  }}>
-        <Button
+        <Box sx={{ width: 200, p: 2, display: "flex", flexDirection: "column", }}>
+          {/* <Button
             component={Link}
             sx={{ color: '#000', fontWeight: '600' }}
             to='/'
           >
             <img src={logo} />
+            <MenuIcon/>
+          </Button> */}
+          <Button
+            variant='contained'
+            sx={{
+
+              textTransform: 'capitalize',
+              fontWeight: '600',
+              color: "black", "&:hover": {
+                backgroundColor: "#427ef8", // Change this to the desired hover color
+                color:"white"
+              },
+            }}
+
+            size='large'
+            onClick={toggleDrawer}
+          >
+            <MenuIcon />
           </Button>
-          <Button component={Link} to='/' sx={{fontSize:"20px"}}>
+          <Button onClick={isDrawerOpen} component={Link} to='/' sx={{
+            fontSize: "20px", color: "black", "&:hover": {
+              backgroundColor: "#427ef8", // Change this to the desired hover color
+              color: "white"
+            },
+          }}>
             Home
           </Button>
           {loggedInUser && (
             <>
               <Button
                 onClick={() => {
-                  openBlogModal()
+                  openBlogModal();
                   toggleDrawer();
                 }}
-                sx={{fontSize:"20px"}}
+                sx={{
+                  fontSize: "20px",
+                  color: "black",
+                  "&:hover": {
+                    backgroundColor: "#427ef8", // Change this to the desired hover color
+                    color: "white"
+                  },
+                }}
               >
                 Add New Blog
               </Button>
-              <Button component={Link} to='/users' sx={{fontSize:"20px"}}>
+
+              <Button
+
+                component={Link}
+                onClick={isDrawerOpen}
+                to="/users"
+                sx={{
+                  fontSize: "20px",
+                  color: "black", "&:hover": {
+                    backgroundColor: "#427ef8", // Change this to the desired hover color
+                    color: "white"
+                  },
+
+                }}
+              >
                 Users
               </Button>
-              <Button onClick={handleLogoutClick} sx={{fontSize:"20px"}}>
+              <Button onClick={handleLogoutClick} sx={{
+                fontSize: "20px", color: "black", "&:hover": {
+                  backgroundColor: "#427ef8", // Change this to the desired hover color
+                  color: "white"
+                },
+              }}>
                 Log Out
               </Button>
             </>
           )}
           {!loggedInUser && (
-            <Button onClick={openModal} sx={{fontSize:"20px"}}>
+            <Button onClick={openModal} sx={{
+              fontSize: "20px", "&:hover": {
+                backgroundColor: "#427ef8", // Change this to the desired hover color
+                color: "white"
+              },
+            }}>
               Log In
             </Button>
           )}
