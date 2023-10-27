@@ -1,18 +1,25 @@
 import { Link } from 'react-router-dom'
-import { useContext } from 'react'
+import { useContext, useState, useEffect } from 'react'
 import useAuthentication from '../hooks/useAuthentication'
 import { UserContext } from '../contexts/UserContext'
 import { NotificationContext } from '../contexts/NotificationContext'
-import { AppBar, Toolbar, Button, Box } from '@mui/material'
+import { AppBar, Toolbar, Button, Box, Drawer } from '@mui/material'
 import { useLoginModal } from '../contexts/LoginModalContext'
 import logo from '../assets/images/logo.png'
 import PeopleIcon from '@mui/icons-material/People'
+import MenuIcon from '@mui/icons-material/Menu';
 
 const Menu = () => {
   const { handleLogout } = useAuthentication()
   const [loggedInUser] = useContext(UserContext)
   const [, showNotification] = useContext(NotificationContext)
   const { openModal, openBlogModal } = useLoginModal()
+  const [isDrawerOpen, setIsDrawerOpen] = useState(true);
+  const [isMobile, setIsMobile] = useState(false);
+
+  const toggleDrawer = () => {
+    setIsDrawerOpen(!isDrawerOpen);
+  }
 
   const toolbarStyles = {
     display: 'grid',
@@ -47,6 +54,29 @@ const Menu = () => {
     }
   }
 
+  const checkScreenWidth = () => {
+    if (window.innerWidth < 850) {
+      setIsMobile(true);
+    } else {
+      setIsMobile(false);
+      setIsDrawerOpen(false)
+
+    }
+  };
+
+  useEffect(() => {
+    checkScreenWidth(); // Initial check
+
+    // Add an event listener for screen size changes
+    window.addEventListener('resize', checkScreenWidth);
+
+    // Clean up the event listener when the component unmounts
+    return () => {
+      window.removeEventListener('resize', checkScreenWidth);
+    };
+  }, []);
+
+  console.log("isMobile", isMobile)
   return (
     <AppBar
       position='static'
@@ -66,7 +96,22 @@ const Menu = () => {
           </Button>
         </Box>
 
-        {loggedInUser ? (
+        {isMobile && (<Box sx={rightBoxStyles}>
+          <Button
+            variant='contained'
+            sx={{
+             
+              textTransform: 'capitalize',
+              fontWeight: '600',
+             
+            }}
+            size='large'
+            onClick={toggleDrawer}
+          >
+            <MenuIcon/>
+          </Button>
+        </Box>)}
+        {loggedInUser && !isMobile ? (
           <Box sx={rightBoxStyles}>
             {loggedInUser !== null && (
               <>
@@ -124,7 +169,7 @@ const Menu = () => {
               Log Out
             </Button>
           </Box>
-        ) : (
+        ) : !isMobile ? (
           <Box sx={rightBoxStyles}>
             <Button
               variant='contained'
@@ -142,8 +187,51 @@ const Menu = () => {
               Log In
             </Button>
           </Box>
-        )}
+        ) : ""}
       </Toolbar>
+      <Drawer
+        anchor='right'
+        open={isDrawerOpen}
+        onClose={toggleDrawer}
+       
+      >
+        <Box sx={{ width: 200, p: 2 , display:"flex", flexDirection:"column",  }}>
+        <Button
+            component={Link}
+            sx={{ color: '#000', fontWeight: '600' }}
+            to='/'
+          >
+            <img src={logo} />
+          </Button>
+          <Button component={Link} to='/' sx={{fontSize:"20px"}}>
+            Home
+          </Button>
+          {loggedInUser && (
+            <>
+              <Button
+                onClick={() => {
+                  openBlogModal()
+                  toggleDrawer();
+                }}
+                sx={{fontSize:"20px"}}
+              >
+                Add New Blog
+              </Button>
+              <Button component={Link} to='/users' sx={{fontSize:"20px"}}>
+                Users
+              </Button>
+              <Button onClick={handleLogoutClick} sx={{fontSize:"20px"}}>
+                Log Out
+              </Button>
+            </>
+          )}
+          {!loggedInUser && (
+            <Button onClick={openModal} sx={{fontSize:"20px"}}>
+              Log In
+            </Button>
+          )}
+        </Box>
+      </Drawer>
     </AppBar>
   )
 }

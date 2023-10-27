@@ -6,9 +6,41 @@ import Error from '../FetchStateUI/Error'
 
 import { Container, Grid, Typography } from '@mui/material'
 import img from '../../assets/images/post1.png'
+import { useState, useEffect } from 'react'
 
 const BlogList = () => {
+
+  const [state400, setState400] = useState(false);
+  const [state600, setState600] = useState(false);
+
   const { blogs, isLoadingBlogs, isBlogsError } = useBlogs()
+  useEffect(() => {
+    const handleResize = () => {
+      const screenWidth = window.innerWidth;
+
+      if (screenWidth < 400) {
+        setState400(true);
+        setState600(false);
+      } else if (screenWidth < 600) {
+        setState400(false);
+        setState600(true);
+      } else {
+        setState400(false);
+        setState600(false);
+      }
+    };
+
+    // Initial call to set the initial state
+    handleResize();
+
+    // Add event listener to handle window resize
+    window.addEventListener('resize', handleResize);
+
+    // Clean up the event listener on component unmount
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   if (isLoadingBlogs) {
     return <Loading />
@@ -17,6 +49,8 @@ const BlogList = () => {
   if (isBlogsError) {
     return <Error />
   }
+
+
 
   return (
     <div>
@@ -47,9 +81,11 @@ const BlogList = () => {
               <Typography
                 variant='h1'
                 sx={{
-                  fontSize: '52px',
+                  fontSize:`${state400 ? "30px" : state600 ? "40px" : "52px"}`  ,
+                  lineHeight:`${state400 ? "40px" : state600 ? "50px" : "52px"}`  ,
+                
                   fontWeight: 700,
-                  lineHeight: '60px',
+                 
                   letterSpacing: '-0.01em',
                   marginTop: '0px',
                   color: 'black',
